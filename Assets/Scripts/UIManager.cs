@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
 
         UpdateLevelTexts();
 
-        YellowAmountTextChange(0);
+        //YellowAmountTextChange(0);
         GreenAmountTextChange(0);
         RedAmountTextChange(0);
         // PlayerPrefs.SetFloat("Gem", 0f);
@@ -185,10 +185,10 @@ public class UIManager : MonoBehaviour
         else if (gemCount > 999) gemText.text = (gemCount / 1000).ToString("F1") + "K";
         //else if (gemCount < 1000) gemText.text = (gemCount).ToString("F1");
     }
-    public void YellowAmountTextChange(int amount)
-    {
-        YellowAmountText.text = amount.ToString();
-    }
+    // public void YellowAmountTextChange(int amount)
+    // {
+    //     YellowAmountText.text = amount.ToString();
+    // }
     public void GreenAmountTextChange(int amount)
     {
         GreenAmountText.text = amount.ToString();
