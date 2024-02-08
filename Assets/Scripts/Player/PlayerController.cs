@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }));
         collectObjSequence.Join(obj.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), .5f));
     }
-
+    
     // private void OnCollisionEnter(Collision other)
     // {
     //     if (other.gameObject.CompareTag("Ground"))
