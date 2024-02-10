@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int greenAmount;
     private int redAmount;
     Sequence collectObjSequence;
+    [SerializeField] GameObject bulletObject;
 
     private void Awake()
     {
@@ -109,4 +110,31 @@ public class PlayerController : MonoBehaviour
     //         isGrounded = false;
     //     }
     // }
+
+        public void FinishLineControll() {
+        Debug.Log("Finish Line");
+        CameraFollow.instance.CameraFinish();
+        UIManager.instance.ConfettiSetActive(true);
+    }
+    public void Aim(Transform enemy) {
+        if (greenAmount == 0 || redAmount == 0)
+            return;
+        greenAmount--;
+        redAmount--;
+
+        GameObject _bullet = Instantiate(bulletObject, transform.position, Quaternion.identity);
+        _bullet.transform.parent = enemy;
+
+        _bullet.transform.DOLocalJump(new Vector3(-4, 37, -0.75f), 2f, 1, .5f).OnComplete(() =>
+        {
+            int distributedGemAmount = 100;
+            UIManager.instance.GemTextUpdate(true, distributedGemAmount);
+            Debug.Log($"Dagitildi");
+            Taptic.Light();
+        });
+
+
+    }
+    
+
 }

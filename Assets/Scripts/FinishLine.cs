@@ -9,13 +9,9 @@ public class FinishLine : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            Finish();
-        }
-    }
+            other.transform.root.GetComponentInChildren<PlayerController>().FinishLineControll();
 
-    private void Finish() {
-        Debug.Log("Finish Line");
-        CameraFollow.instance.CameraFinish();
-        UIManager.instance.ConfettiSetActive(true);
+            Debug.Log("finish");
+        }
     }
 }
