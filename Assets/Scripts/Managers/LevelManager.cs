@@ -28,4 +28,5 @@ public class LevelManager : MonoBehaviour
             endTransform.position = new Vector3(-4, 37, endTransform.position.z + 3);
         }
     }
+
 }

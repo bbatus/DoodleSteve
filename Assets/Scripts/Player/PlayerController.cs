@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private int redAmount;
     Sequence collectObjSequence;
     [SerializeField] GameObject bulletObject;
-
+    [SerializeField] private float moveForwardSpeed = 5f;
+    [SerializeField] private bool isMovingForward = false;
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -31,6 +32,11 @@ public class PlayerController : MonoBehaviour
             // bu kontrolü kaldırmanız daha temiz bir yaklaşım olacaktır.
             Debug.LogError("InputManager instance not found. Please add it to the scene.");
         }
+        GameControls();
+    }
+    private void GameControls()
+    {
+        
     }
 
     private void Update()
@@ -55,6 +61,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+
+        if (isMovingForward)
+        {
+
+            transform.position += new Vector3(0, 0, moveForwardSpeed * Time.deltaTime);
+        }
     }
 
     private void Move()
@@ -70,7 +82,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
 
         float targetRotation = transform.eulerAngles.y + 360f; // Y ekseni etrafında 360 derece dön
-    DOTween.To(() => transform.eulerAngles.y, x => transform.eulerAngles = new Vector3(transform.eulerAngles.x, x, transform.eulerAngles.z), targetRotation, 1f);
+        DOTween.To(() => transform.eulerAngles.y, x => transform.eulerAngles = new Vector3(transform.eulerAngles.x, x, transform.eulerAngles.z), targetRotation, 1f);
     }
 
     public void ObjCollectJump(GameObject obj, ObjType objType)
@@ -94,7 +106,7 @@ public class PlayerController : MonoBehaviour
         }));
         collectObjSequence.Join(obj.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), .5f));
     }
-    
+
     // private void OnCollisionEnter(Collision other)
     // {
     //     if (other.gameObject.CompareTag("Ground"))
@@ -111,13 +123,26 @@ public class PlayerController : MonoBehaviour
     //     }
     // }
 
-        public void FinishLineControll() {
+    public void FinishLineControll()
+    {
+            UIManager.instance.levelCompletePanel.SetActive(true);
+            UIManager.instance.ActivateLevelCompletePanel(1f);
         Debug.Log("Finish Line");
         CameraFollow.instance.CameraFinish();
         UIManager.instance.ConfettiSetActive(true);
+        isMovingForward = true;
+        playerData.movementSpeed = 1.25f;
+        
+        //transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + 100), 1f);  //.OnComplete(() =>
+        // {
+        //     // Hareket tamamlandığında, toplanan objelerin dağıtımını yap
+        //     //Aim(enemyTransform); // enemyTransform, Aim fonksiyonunuzda tanımlı bir hedef olmalıdır.
+        // });
     }
-    public void Aim(Transform enemy) {
+    public void Aim(Transform enemy)
+    {
         if (greenAmount == 0 || redAmount == 0)
+
             return;
         greenAmount--;
         redAmount--;
@@ -125,7 +150,7 @@ public class PlayerController : MonoBehaviour
         GameObject _bullet = Instantiate(bulletObject, transform.position, Quaternion.identity);
         _bullet.transform.parent = enemy;
 
-        _bullet.transform.DOLocalJump(new Vector3(-4, 37, -0.75f), 2f, 1, .5f).OnComplete(() =>
+        _bullet.transform.DOLocalJump(new Vector3(0, -2, -0.75f), 2f, 1, .5f).OnComplete(() =>
         {
             int distributedGemAmount = 100;
             UIManager.instance.GemTextUpdate(true, distributedGemAmount);
@@ -135,6 +160,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    
+
 
 }

@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
     string[] feedbacks = new string[] { "Wow!", "Amazing!", "Perfect!", "Good!", "Great!", "Incredible!", "Nice!", "Cool!" };
 
     [SerializeField]
-    private GameObject levelCompletePanel;
+    public GameObject levelCompletePanel;
 
     [SerializeField]
     private GameObject levelFailedPanel;
@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour
               PlayerPrefs.SetInt("Level1", 1);
           }*/
 
-        ConfettiSetActive(false);
+       // ConfettiSetActive(false);
 
         UpdateLevelTexts();
 
@@ -320,18 +320,18 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        /* if (Input.GetMouseButton(0) && tutorialPanelActive)
-         {
-             StartCoroutine(TutorialPanelSetActive(false, 0));
-             // timerPanel.SetActive(true);
-             if (cursorTransform != null)
-             {
-                 cursorTransform.gameObject.SetActive(false);
-             }
+        //  if (Input.GetMouseButton(0) && tutorialPanelActive)
+        //  {
+        //      StartCoroutine(TutorialPanelSetActive(false, 0));
+        //      timerPanel.SetActive(true);
+        //      if (cursorTransform != null)
+        //      {
+        //          cursorTransform.gameObject.SetActive(false);
+        //      }
 
-             tutorialPanelActive = false;
-         }
-         */
+        //      tutorialPanelActive = false;
+        //  }
+         
         if (Input.GetKey(KeyCode.R))
         {
             OnTapToRetry();
