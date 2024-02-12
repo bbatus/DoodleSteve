@@ -23,4 +23,4 @@ Hypercasual Doodle Jump Clone Project!
 ![Ekran Görüntüsü 1](https://github.com/bbatus/DoodleSteve/blob/master/Images/1.png)
 ![Ekran Görüntüsü 2](https://github.com/bbatus/DoodleSteve/blob/master/Images/2.png)
 ![Ekran Görüntüsü 3](https://github.com/bbatus/DoodleSteve/blob/master/Images/3.png)
-![Ekran Görüntüsü 4](hhttps://github.com/bbatus/DoodleSteve/blob/master/Images/4.png)
+![Ekran Görüntüsü 4](https://github.com/bbatus/DoodleSteve/blob/master/Images/4.png)
