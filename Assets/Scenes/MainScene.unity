@@ -1188,17 +1188,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701e7ffc765387f4e930ecafef92640e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    jumpForce: 10
-    movementSpeed: 6
+  moveForwardSpeed: 5
+  isMovingForward: 0
   isGrounded: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   groundCheckDistance: 1
+  playerData:
+    jumpForce: 10
+    movementSpeed: 5
+  greenAmount: 0
+  redAmount: 0
   bulletObject: {fileID: 2080454457918537176, guid: d920ea24e9a0aa3449f58078bf6d18cc, type: 3}
-  moveForwardSpeed: 5
-  isMovingForward: 0
 --- !u!114 &776057802 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 562249909379991353, guid: 071bb5c62d6c14ddd87b1545e2483d89, type: 3}
@@ -2285,8 +2287,8 @@ Transform:
   m_GameObject: {fileID: 1278816226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4, y: 24, z: 0}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1971034341}

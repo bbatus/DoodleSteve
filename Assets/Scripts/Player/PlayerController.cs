@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField][Range(1f, 10f)] float groundCheckDistance = 0.2f;
     private Rigidbody playerRb;
-    private PlayerData playerData;
+    public PlayerData playerData;
     [Space(20)]
     [Header("Collectables")]
     [SerializeField] private int greenAmount;
