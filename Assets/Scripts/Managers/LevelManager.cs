@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     }
 
     void Start() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             GameObject _go = Instantiate(finishAreaPrefab);
             _go.transform.position = endTransform.position;
             endTransform.position = new Vector3(-4, 37, endTransform.position.z + 3);

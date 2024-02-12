@@ -12,7 +12,6 @@ public class FinishLine : MonoBehaviour
             other.transform.root.GetComponentInChildren<PlayerController>().FinishLineControll();
 
             Debug.Log("finish");
-            
         }
     }
 }

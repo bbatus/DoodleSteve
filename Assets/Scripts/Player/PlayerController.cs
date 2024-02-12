@@ -7,17 +7,25 @@ using System.ComponentModel;
 
 public class PlayerController : MonoBehaviour
 {
+    [Space(20)]
+    [Header("Player Controls")]
+    [SerializeField][Range(1f, 10f)] private float moveForwardSpeed = 5f;
+    [SerializeField] private bool isMovingForward = false;
+    private PlayerAnim playerAnim;
+    [Space(20)]
+    [Header("Ground Checking")]
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField][Range(1f, 10f)] float groundCheckDistance = 0.2f;
     private Rigidbody playerRb;
-    public PlayerData playerData;
-    public bool isGrounded;
-    public LayerMask groundLayer;
-    public float groundCheckDistance = 0.2f;
-    private int greenAmount;
-    private int redAmount;
+    private PlayerData playerData;
+    [Space(20)]
+    [Header("Collectables")]
+    [SerializeField] private int greenAmount;
+    [SerializeField] private int redAmount;
     Sequence collectObjSequence;
     [SerializeField] GameObject bulletObject;
-    [SerializeField] private float moveForwardSpeed = 5f;
-    [SerializeField] private bool isMovingForward = false;
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -27,16 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         if (InputManager.instance == null)
         {
-            // InputManager objesi sahnede yoksa, bunu burada oluşturabilirsiniz.
-            // Ancak, InputManager'ı bir prefab olarak sahnenize eklemeniz ve
-            // bu kontrolü kaldırmanız daha temiz bir yaklaşım olacaktır.
-            Debug.LogError("InputManager instance not found. Please add it to the scene.");
+            Debug.LogError("IM Yok");
         }
-        GameControls();
-    }
-    private void GameControls()
-    {
-        
     }
 
     private void Update()
@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
         if (isMovingForward)
         {
-
             transform.position += new Vector3(0, 0, moveForwardSpeed * Time.deltaTime);
         }
     }
@@ -107,37 +106,16 @@ public class PlayerController : MonoBehaviour
         collectObjSequence.Join(obj.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), .5f));
     }
 
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Ground"))
-    //     {
-    //         isGrounded = true;
-    //     }
-    // }
-
-    // private void OnCollisionExit(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Ground"))
-    //     {
-    //         isGrounded = false;
-    //     }
-    // }
-
     public void FinishLineControll()
     {
-            UIManager.instance.levelCompletePanel.SetActive(true);
-            UIManager.instance.ActivateLevelCompletePanel(1f);
+        UIManager.instance.levelCompletePanel.SetActive(true);
+        UIManager.instance.ActivateLevelCompletePanel(1f);
         Debug.Log("Finish Line");
         CameraFollow.instance.CameraFinish();
         UIManager.instance.ConfettiSetActive(true);
         isMovingForward = true;
         playerData.movementSpeed = 1.25f;
-        
-        //transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + 100), 1f);  //.OnComplete(() =>
-        // {
-        //     // Hareket tamamlandığında, toplanan objelerin dağıtımını yap
-        //     //Aim(enemyTransform); // enemyTransform, Aim fonksiyonunuzda tanımlı bir hedef olmalıdır.
-        // });
+        //playerAnim.FinishAnim();
     }
     public void Aim(Transform enemy)
     {
@@ -157,9 +135,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"Dagitildi");
             Taptic.Light();
         });
-
-
     }
-
-
 }

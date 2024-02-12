@@ -20,4 +20,8 @@ public class PlayerAnim : MonoBehaviour
         //      animator.SetBool("isJumping", false);
         // }
     }
+
+    public void FinishAnim(){
+        animator.SetBool("isTouched", true);
+    }
 }
